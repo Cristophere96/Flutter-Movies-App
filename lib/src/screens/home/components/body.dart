@@ -22,10 +22,12 @@ class Body extends StatelessWidget {
         children: <Widget>[
           buildSubtitle(context, 'In Theater'),
           NowPlayingCarousel(moviesProvider: moviesProvider),
-          SizedBox(height: kDefaultPadding ),
+          SizedBox(height: kDefaultPadding),
           buildSubtitle(context, 'Popular Movies'),
           PopularMoviesCarousel(moviesProvider: moviesProvider),
-          SizedBox(height: kDefaultPadding,),
+          SizedBox(
+            height: kDefaultPadding,
+          ),
         ],
       ),
     );
@@ -40,9 +42,9 @@ class Body extends StatelessWidget {
           Text(
             title,
             style: Theme.of(context).textTheme.headline5.copyWith(
-              fontWeight: FontWeight.w600,
-              color: kTextColor,
-            ),
+                  fontWeight: FontWeight.w600,
+                  color: kTextColor,
+                ),
           ),
           Container(
             margin: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),

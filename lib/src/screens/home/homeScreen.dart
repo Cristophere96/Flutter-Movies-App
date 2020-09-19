@@ -8,18 +8,18 @@ import 'package:movies/src/search/searchDelegate.dart';
 import 'components/body.dart';
 
 class HomeScreen extends StatelessWidget {
-
   final moviesProvider = new MoviesProviders();
-  
+
   @override
   Widget build(BuildContext context) {
-
     moviesProvider.getPopulars();
 
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: buildAppBar(context),
-      body: Body(moviesProvider: moviesProvider)
+      body: Body(
+        moviesProvider: moviesProvider,
+      ),
     );
   }
 

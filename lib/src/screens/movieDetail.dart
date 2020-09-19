@@ -5,10 +5,18 @@ import 'package:movies/src/models/actorsModel.dart';
 
 import 'package:movies/src/providers/moviesProviders.dart';
 
+import '../../constants.dart';
+import '../../constants.dart';
+import '../../constants.dart';
+import '../../constants.dart';
+import '../../constants.dart';
+import '../../constants.dart';
+import '../../constants.dart';
+import '../../constants.dart';
+
 class MovieDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     final Movie movie = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
@@ -17,14 +25,14 @@ class MovieDetail extends StatelessWidget {
         slivers: <Widget>[
           _createAppbar(movie),
           SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                SizedBox(height: 10.0,),
-                _posterTitle(movie, context),
-                _description(movie),
-                _createCasting(movie),
-              ]
-            ),
+            delegate: SliverChildListDelegate([
+              SizedBox(
+                height: 10.0,
+              ),
+              _posterTitle(movie, context),
+              _description(context, movie),
+              _createCasting(movie),
+            ]),
           ),
         ],
       ),
@@ -34,7 +42,7 @@ class MovieDetail extends StatelessWidget {
   Widget _createAppbar(Movie movie) {
     return SliverAppBar(
       elevation: 2.0,
-      backgroundColor: Colors.amber,
+      backgroundColor: kSecondaryColor,
       expandedHeight: 200.0,
       floating: false,
       pinned: true,
@@ -64,24 +72,47 @@ class MovieDetail extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: 20.0,),
+          SizedBox(
+            width: 20.0,
+          ),
           Flexible(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(movie.title, 
-                  style: Theme.of(context).textTheme.headline6,
+                Text(
+                  movie.title,
+                  style: TextStyle(
+                      color: kSecondaryColor,
+                      fontSize: 34,
+                      fontWeight: FontWeight.w600),
                   overflow: TextOverflow.ellipsis,
                 ),
-                Text(movie.originalTitle,
-                  style: Theme.of(context).textTheme.subtitle1,
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  movie.originalTitle,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
                   overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(
+                  height: 5,
                 ),
                 Row(
                   children: <Widget>[
-                    Icon(Icons.star_border),
-                    Text(movie.voteAverage.toString(),
-                      style: Theme.of(context).textTheme.subtitle1,
+                    Icon(
+                      Icons.star_border,
+                      color: Colors.amber[300],
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      movie.voteAverage.toString(),
+                      style: TextStyle(color: Colors.black, fontSize: 16),
                     ),
                   ],
                 )
@@ -93,12 +124,59 @@ class MovieDetail extends StatelessWidget {
     );
   }
 
-  Widget _description(Movie movie) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-      child: Text(
-        movie.overview,
-        textAlign: TextAlign.justify,
+  Widget _description(BuildContext context, Movie movie) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Plot',
+            style: Theme.of(context).textTheme.headline5.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: kTextColor,
+                ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(vertical: kDefaultPadding / 4),
+            height: 6,
+            width: 40,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: kSecondaryColor,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            movie.overview,
+            textAlign: TextAlign.justify,
+            style: TextStyle(
+              fontSize: 18,
+              color: kTextColor,
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            'Casting',
+            style: Theme.of(context).textTheme.headline5.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: kTextColor,
+                ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(vertical: kDefaultPadding / 4),
+            height: 6,
+            width: 40,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: kSecondaryColor,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -145,6 +223,9 @@ class MovieDetail extends StatelessWidget {
               height: 150.0,
               fit: BoxFit.cover,
             ),
+          ),
+          SizedBox(
+            height: 5,
           ),
           Text(
             actor.name,

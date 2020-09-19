@@ -27,6 +27,7 @@ class HomeScreen extends StatelessWidget {
     return AppBar(
       title: Text('Movies'),
       backgroundColor: Colors.white,
+      brightness: Brightness.light,
       elevation: 0,
       leading: IconButton(
         padding: EdgeInsets.only(left: kDefaultPadding),
